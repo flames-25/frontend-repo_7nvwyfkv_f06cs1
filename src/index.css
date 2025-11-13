@@ -18,11 +18,11 @@
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-slate-950 text-white;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Custom utility classes */
 @layer utilities {
   .animate-in {
     animation-name: animateIn;
@@ -42,5 +42,53 @@
     --tw-exit-rotate: initial;
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
+  }
+
+  /* Glass morphism card */
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  /* Neon glow on hover */
+  .hover-glow:hover {
+    box-shadow: 0 10px 40px rgba(168, 85, 247, 0.35), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  }
+
+  /* Shake/Wobble animation */
+  .hover-shake:hover {
+    animation: shake 700ms cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-0.2deg); }
+    20%, 80% { transform: translate3d(2px, 0, 0) rotate(0.2deg); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0) rotate(-0.4deg); }
+    40%, 60% { transform: translate3d(4px, 0, 0) rotate(0.4deg); }
+  }
+
+  /* Subtle float for icons */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 via-sky-400 to-orange-300;
+  }
+
+  .btn-primary {
+    @apply px-5 py-3 rounded-xl font-semibold bg-gradient-to-r from-fuchsia-600 to-sky-600 hover:from-fuchsia-500 hover:to-sky-500 active:scale-[0.98] transition-all duration-300 shadow-lg shadow-fuchsia-900/30;
+  }
+
+  .btn-secondary {
+    @apply px-5 py-3 rounded-xl font-semibold border border-white/20 hover:border-white/40 transition-colors;
   }
 }
